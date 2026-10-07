@@ -37,7 +37,10 @@
     "HTTP004"
   ],
   "non-self-referencing canonical": [
-    "CANSELFRF-V2001"
+    "CAN-SR001",
+    "CANSELFRF-V6089",
+    "CANSELFRF001",
+    "CANCON002"
   ],
   "unparseable structured data": [
     "SCHEMA-PARSE-ERROR"

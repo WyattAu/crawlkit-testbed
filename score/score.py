@@ -58,6 +58,16 @@ def read_findings(spec: str) -> list[dict]:
     ]
 
 
+
+def expected_noise_and_planted(page, spec, mapping, noise):
+    """Codes a fixture page may legitimately emit: the noise floor plus every
+    code mapped to a defect planted on that page."""
+    allowed = set(noise)
+    for e in spec.get("expect", []):
+        allowed.update(mapping.get(e["defect"], []))
+    return allowed
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--findings", required=True, help="findings.json or crawlkit.db")
@@ -100,7 +110,15 @@ def main() -> int:
     for p in controls:
         noise |= by_page.get(p, set())
 
-    tp = fp = fn = 0
+    # Expectations are DEFECTS, not codes. A defect's mapping may list several
+    # codes because different analyzers describe the same problem -- and
+    # dedupe collapses those to one -- so "missed" has to be judged per defect:
+    # satisfied if any of its codes appeared, missed only if none did. Counting
+    # codes reported a miss for every synonym of a defect that was in fact
+    # found, which is how CANSELFRF001 read as missed while CAN-SR001 hit.
+    defects_found = 0
+    defects_planted = 0
+    fp = 0
     rows = []
     unmapped: set[str] = set()
     all_codes: set[str] = set().union(*by_page.values()) if by_page else set()
@@ -108,39 +126,29 @@ def main() -> int:
     for page, spec in sorted(manifest["pages"].items()):
         if page in controls:
             continue
-        expected_codes: set[str] = set()
-        crawl_scoped = False
+        actual = by_page.get(page, set())
+        hits = misses = unexpected = 0
         for e in spec.get("expect", []):
             codes = mapping.get(e["defect"])
             if not codes:
                 unmapped.add(e["defect"])
                 continue
-            expected_codes.update(codes)
-            # Some defects are properties of the crawl, not of one page.
-            # Duplicate-content findings are attributed to whichever page lost
-            # the dedupe, and a broken link is reported on its 404 target rather
-            # than on the page that links to it. Pinning those to the planting
-            # page would score an auditor as wrong for an attribution choice.
+            defects_planted += 1
             if e.get("scope") == "crawl":
-                crawl_scoped = True
+                satisfied = bool(set(codes) & all_codes)
+            else:
+                satisfied = bool(set(codes) & actual)
+            if satisfied:
+                defects_found += 1
+                hits += 1
+            else:
+                misses += 1
+        unexpected = len(actual - expected_noise_and_planted(page, spec, mapping, noise))
+        fp += unexpected
+        rows.append((page, hits, misses, unexpected, [], []))
 
-        actual = by_page.get(page, set())
-        if crawl_scoped:
-            hit = expected_codes & all_codes
-            missed: set[str] = expected_codes - all_codes
-        else:
-            hit = expected_codes & actual
-            missed = expected_codes - actual
-        unexpected = actual - expected_codes - noise
-
-        tp += len(hit)
-        fn += len(missed)
-        fp += len(unexpected)
-        rows.append((page, len(hit), len(missed), len(unexpected),
-                     sorted(missed), sorted(unexpected)))
-
-    recall = tp / (tp + fn) if (tp + fn) else 1.0
-    precision = tp / (tp + fp) if (tp + fp) else 0.0
+    recall = defects_found / defects_planted if defects_planted else 1.0
+    precision = (defects_planted) / (defects_planted + fp) if (defects_planted + fp) else 0.0
 
     print("=" * 68)
     print("crawlkit-testbed scoring")
@@ -154,9 +162,9 @@ def main() -> int:
         for c in unexpected:
             print(f"    UNEXPECTED {c}")
     print("-" * 68)
-    print(f"true positives   {tp}")
-    print(f"missed (recall)  {fn}")
-    print(f"unexpected (prec){fp}")
+    print(f"defects found    {defects_found} of {defects_planted}")
+    print(f"defects missed   {defects_planted - defects_found}")
+    print(f"unexpected codes {fp}")
     if unmapped:
         print(f"\nUNMAPPED defect descriptions ({len(unmapped)}): "
               f"{sorted(unmapped)}\nAdd them to score/defect_to_code.json.")
