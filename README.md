@@ -56,35 +56,27 @@ unexpected here by construction.
 ## Current result
 
 ```
-recall     92.9%   (26 of 28 planted defects found)
-precision   29.5%  (floor 15%)
+recall     96.2%   (25 of 26 planted defects found)
+precision   28.4%  (floor 15%)
 ```
 
 ## Known crawlkit gaps this testbed found
 
-Both are real defects, found on the first run, and both are recorded here so
-they cannot be quietly forgotten.
+Three so far. The first two are fixed; the third is open.
 
-1. **Unparseable JSON-LD is invisible.** The parser calls
-   `serde_json::from_str` and on `Err(_)` skips the block. A malformed block
-   therefore never reaches `structured_data`, and no analyzer can report it —
-   a page with broken schema produces no finding at all.
+1. **Unparseable JSON-LD was invisible — fixed.** The parser discarded the
+   parse error, so a page with broken schema looked identical to one with none.
+   `SCHEMA-PARSE-ERROR` now reports it, quoting the serde message.
 
-2. **A canonical pointing elsewhere is only detected in the deep profile.**
-   `CANSELFRF-V2001` exists and does exactly this, but it is not in the
-   default profile, so a default crawl misses a canonical misdirection —
-   the single most damaging canonical mistake a site can make.
+2. **A missing `lang` attribute was silent — fixed.** The parser always
+   extracted it and no analyzer read it; an existing test asserted that a page
+   with no lang produces zero findings. `A11Y-LANG-MISSING` now reports it
+   (WCAG 3.1.1, Level A).
 
-## Adding a fixture
-
-1. Add `site/whatever.html`, marking each planted defect with a
-   `<!-- PLANTED: ... -->` comment at the exact spot.
-2. Link it from `site/index.html`. A crawler cannot find what nothing links to.
-3. Add an entry to `expected/manifest.json`, written from the comments.
-4. If it is a new defect family, add the mapping to
-   `score/defect_to_code.json`.
-5. Re-run the scorer. A green result that stays green after your change is the
-   only evidence that counts.
+3. **A canonical pointing elsewhere is only detected in the deep profile —
+   open.** `CANSELFRF-V2001` exists and does exactly this, but it is not in the
+   default profile, so a default crawl misses the most damaging canonical
+   mistake a site can make. This is the one remaining recall miss.
 
 ## Registering a live site
 

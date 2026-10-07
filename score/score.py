@@ -139,20 +139,6 @@ def main() -> int:
         rows.append((page, len(hit), len(missed), len(unexpected),
                      sorted(missed), sorted(unexpected)))
 
-    # Cross-page findings are attributed by crawlkit to one page; the duplicate
-    # families are satisfied if the code appears anywhere in the crawl.
-    global_codes = set().union(*by_page.values()) if by_page else set()
-    dup_codes = set()
-    for page, spec in manifest["pages"].items():
-        for e in spec.get("expect", []):
-            for c in mapping.get(e["defect"], []):
-                if c.startswith("DUP-CROSS"):
-                    dup_codes.add(c)
-    recovered_dup = dup_codes & global_codes
-    if recovered_dup:
-        fn -= len(recovered_dup)
-        tp += len(recovered_dup)
-
     recall = tp / (tp + fn) if (tp + fn) else 1.0
     precision = tp / (tp + fp) if (tp + fp) else 0.0
 

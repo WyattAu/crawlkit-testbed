@@ -40,9 +40,7 @@
     "CANSELFRF-V2001"
   ],
   "unparseable structured data": [
-    "SCHEMA-ERR001",
-    "SDERR-V2001",
-    "SCHEMABAD001"
+    "SCHEMA-PARSE-ERROR"
   ],
   "missing lang attribute": [
     "A11Y-LANG-MISSING"
