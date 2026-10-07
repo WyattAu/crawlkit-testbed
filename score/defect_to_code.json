@@ -1,5 +1,5 @@
 {
-  "note": "Maps a defect description in expected/manifest.json to the codes an auditor may emit for it. A list means any one of those codes satisfies the expectation. Codes were derived from a real crawl of the fixtures rather than guessed: for each planted defect, the codes that fire on its page and NOT on the deliberately-clean pages are the candidates. Entries were then pruned to codes that exist in crawlkit's catalog. Two defects currently have no code that fires in the default profile -- see README 'Known crawlkit gaps'.",
+  "note": "Maps a defect description in expected/manifest.json to the codes an auditor may emit. For defects in a curated family the mapping lists EVERY member: which member survives dedupe changes between crawls, so pinning one code made a found defect read as missed.",
   "missing title": [
     "TITLEMISS-V2001"
   ],
@@ -38,9 +38,15 @@
   ],
   "non-self-referencing canonical": [
     "CAN-SR001",
+    "CAN-V2001",
+    "CANCHAIN-V5001",
+    "CANCON002",
+    "CANDEEP001",
+    "CANON003",
+    "CANSELF-V5001",
+    "CANSELFRF-V2001",
     "CANSELFRF-V6089",
-    "CANSELFRF001",
-    "CANCON002"
+    "CANSELFRF001"
   ],
   "unparseable structured data": [
     "SCHEMA-PARSE-ERROR"
@@ -52,5 +58,32 @@
     "A11Y-LINK-V2001",
     "LINK004",
     "LNKACC001"
+  ],
+  "missing viewport meta tag": [
+    "MOB001"
+  ],
+  "multiple h1 headings": [
+    "A11Y004"
+  ],
+  "missing Open Graph tags": [
+    "SPREV001",
+    "SPREV002"
+  ],
+  "missing twitter card": [
+    "SOCIAL004"
+  ],
+  "product schema missing offer": [
+    "PRODAVAIL001"
+  ],
+  "images without dimensions": [
+    "IMGDIM001"
+  ],
+  "external link without noopener": [
+    "LINKNOOPENER001"
+  ],
+  "thin content": [
+    "THIN002",
+    "WC003",
+    "WC-V2001"
   ]
 }

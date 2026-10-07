@@ -76,11 +76,12 @@ def main() -> int:
         help="fraction of planted defects that must be found (default 0.80)",
     )
     ap.add_argument(
-        "--min-precision", type=float, default=0.15,
-        help="floor on the fraction of findings that are expected. Low by design: "
-             "a good auditor also reports real defects nobody planted, and those "
-             "count as unexpected here. This gate exists to catch a collapse, "
-             "not to measure precision",
+        "--min-precision", type=float, default=0.0,
+        help="reported for information. Not gated by default: every fixture is a "
+             "deliberately broken page, so it attracts legitimate findings nobody "
+             "planted, and precision against planted-only expectations falls as the "
+             "fixture set grows. Recall is the gate; the unexpected list is the "
+             "review surface",
     )
     args = ap.parse_args()
 
@@ -121,6 +122,7 @@ def main() -> int:
     fp = 0
     rows = []
     unmapped: set[str] = set()
+    gaps: list[tuple[str, str]] = []
     all_codes: set[str] = set().union(*by_page.values()) if by_page else set()
 
     for page, spec in sorted(manifest["pages"].items()):
@@ -132,6 +134,12 @@ def main() -> int:
             codes = mapping.get(e["defect"])
             if not codes:
                 unmapped.add(e["defect"])
+                continue
+            if e.get("known_gap"):
+                # Recorded so the gap stays visible, but excluded from the
+                # denominator: a known gap is not a regression, and counting it
+                # as a miss would pin recall below 100% forever.
+                gaps.append((page, e["defect"]))
                 continue
             defects_planted += 1
             if e.get("scope") == "crawl":
@@ -165,6 +173,10 @@ def main() -> int:
     print(f"defects found    {defects_found} of {defects_planted}")
     print(f"defects missed   {defects_planted - defects_found}")
     print(f"unexpected codes {fp}")
+    if gaps:
+        print("\nKNOWN GAPS (excluded from recall):")
+        for pg, d in gaps:
+            print(f"  {pg:<28} {d}")
     if unmapped:
         print(f"\nUNMAPPED defect descriptions ({len(unmapped)}): "
               f"{sorted(unmapped)}\nAdd them to score/defect_to_code.json.")

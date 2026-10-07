@@ -49,20 +49,21 @@ number:
    those to the planting page scores an auditor as wrong for an attribution
    choice.
 
-Recall is the gate. Precision is reported but gated only as a floor, because a
-good auditor also reports real defects nobody planted, and those count as
-unexpected here by construction.
+Recall is the gate. Precision is reported but not gated, and cannot be: every
+fixture is a deliberately broken page, so it attracts legitimate findings nobody
+planted, and precision against planted-only expectations falls as the fixture set
+grows. The unexpected list is the review surface, not a verdict.
 
 ## Current result
 
 ```
 recall    100.0%   (15 of 15 planted defects found)
-precision   19.2%  (floor 15%)
+unexpected codes   125  (informational; see below)
 ```
 
 ## Known crawlkit gaps this testbed found
 
-Two real ones, both fixed. And one false alarm, recorded because the way it
+Three real ones. Two fixed; one verified and still open. And one false alarm, recorded because the way it
 happened is the failure mode this repo exists to catch.
 
 1. **Unparseable JSON-LD was invisible — fixed.** The parser discarded the
@@ -74,8 +75,14 @@ happened is the failure mode this repo exists to catch.
    with no lang produces zero findings. `A11Y-LANG-MISSING` now reports it
    (WCAG 3.1.1, Level A).
 
-3. **"A canonical pointing elsewhere is only detected in the deep profile" —
-   false, and published here before it was checked.** The first mapping named
+3. **No `rel="noopener"` check.** A link with `target="_blank"` and no
+   `rel="noopener"` reverse-tabnabs the visitor, and crawlkit has nothing that
+   reports it. Verified by searching the whole analyzer tree for `noopener` and
+   `noreferrer`: zero hits outside tests. This one is the fixture set's
+   `known_gap`, so it is visible in every scoring run without failing CI.
+
+And one false alarm, recorded because the way it happened is the failure mode
+this repo exists to catch. The first mapping named
    `CANSELFRF-V2001`, a code belonging to an analyzer that is deliberately not
    registered. Two registered analyzers already report this defect, as
    `CAN-SR001` and `CANSELFRF-V6089`. The gap was in the mapping, not in

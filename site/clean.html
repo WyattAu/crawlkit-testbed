@@ -2,15 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <!-- This page is deliberately free of planted defects. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- This page is deliberately free of planted defects. It defines the noise
+       floor: anything it emits is environment, not a finding. So it has to be
+       genuinely clean, which is a stronger requirement than it sounds — an
+       earlier version of this file had no viewport meta tag, and that planted a
+       real defect into the floor, which hid the one fixture that legitimately
+       lacked one. -->
   <title>Clean page</title>
   <meta name="description" content="A page with no planted defects, used as the negative control.">
-  <link rel="canonical" href="https://testbed.example/clean.html">
+  <link rel="canonical" href="http://127.0.0.1:PORT/clean.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Clean page">
+  <meta property="og:description" content="A page with no planted defects, used as the negative control.">
+  <meta property="og:image" content="http://127.0.0.1:PORT/og.png">
+  <meta property="og:url" content="http://127.0.0.1:PORT/clean.html">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Clean page">
+  <meta name="twitter:description" content="A page with no planted defects.">
 </head>
 <body>
   <h1>Clean page</h1>
-  <p>Everything here is well-formed on purpose.</p>
-  <img src="present.png" alt="A described image">
+  <p>Everything here is well-formed on purpose, including the parts that are easy
+     to forget: the viewport declaration, the Open Graph metadata, and the image
+     dimensions.</p>
+  <img src="/present.png" alt="A described image" width="640" height="480">
   <a href="/long-meta.html">Internal link with descriptive anchor text</a>
 </body>
 </html>

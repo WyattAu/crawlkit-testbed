@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- PLANTED: malformed JSON-LD (trailing comma), so it will not parse -->
   <script type="application/ld+json">
   {
@@ -11,6 +12,13 @@
     "offers": { "@type": "Offer", "price": "9.99", },
   }
   </script>
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Malformed structured data">
+  <meta property="og:image" content="http://127.0.0.1:8904/og.png">
+  <meta name="twitter:card" content="summary">
+  <meta property="og:description" content="A Product schema block with a trailing comma, so it will not parse.">
+  <meta property="og:url" content="http://127.0.0.1:8904/broken-jsonld.html">
+  <meta name="twitter:description" content="A Product schema block with a trailing comma, so it will not parse.">
   <title>Malformed structured data</title>
   <meta name="description" content="The JSON-LD on this page has a trailing comma.">
 </head>

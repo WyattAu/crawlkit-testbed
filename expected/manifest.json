@@ -5,46 +5,157 @@
     "/missing-title.html": {
       "purpose": "No title, no meta description, no h1, heading levels skip h2->h4, image with no alt",
       "expect": [
-        { "defect": "missing title" },
-        { "defect": "missing meta description" },
-        { "defect": "no h1 / heading hierarchy" },
-        { "defect": "image without alt" }
+        {
+          "defect": "missing title"
+        },
+        {
+          "defect": "missing meta description"
+        },
+        {
+          "defect": "no h1 / heading hierarchy"
+        },
+        {
+          "defect": "image without alt"
+        }
       ]
     },
     "/long-meta.html": {
       "purpose": "Title and description both far past SERP display width",
-      "expect": [{ "defect": "title too long" }, { "defect": "description too long" }]
+      "expect": [
+        {
+          "defect": "title too long"
+        },
+        {
+          "defect": "description too long"
+        }
+      ]
     },
     "/duplicate-a.html": {
       "purpose": "Shares title and description with duplicate-b; also has a broken internal link",
       "expect": [
-        { "defect": "duplicate title across pages", "scope": "crawl" },
-        { "defect": "duplicate description across pages", "scope": "crawl" },
-        { "defect": "broken internal link", "scope": "crawl" }
+        {
+          "defect": "duplicate title across pages",
+          "scope": "crawl"
+        },
+        {
+          "defect": "duplicate description across pages",
+          "scope": "crawl"
+        },
+        {
+          "defect": "broken internal link",
+          "scope": "crawl"
+        }
       ]
     },
     "/duplicate-b.html": {
       "purpose": "Twin of duplicate-a",
       "expect": [
-        { "defect": "duplicate title across pages", "scope": "crawl" },
-        { "defect": "duplicate description across pages", "scope": "crawl" }
+        {
+          "defect": "duplicate title across pages",
+          "scope": "crawl"
+        },
+        {
+          "defect": "duplicate description across pages",
+          "scope": "crawl"
+        }
       ]
     },
     "/canonical-elsewhere.html": {
       "purpose": "Canonical points at /clean.html",
-      "expect": [{ "defect": "non-self-referencing canonical" }]
+      "expect": [
+        {
+          "defect": "non-self-referencing canonical"
+        }
+      ]
     },
     "/broken-jsonld.html": {
       "purpose": "JSON-LD with a trailing comma",
-      "expect": [{ "defect": "unparseable structured data" }]
+      "expect": [
+        {
+          "defect": "unparseable structured data"
+        }
+      ]
     },
     "/no-lang.html": {
       "purpose": "No lang attribute, a nameless link, and an external target=_blank",
-      "expect": [{ "defect": "missing lang attribute" }, { "defect": "link without accessible name" }]
+      "expect": [
+        {
+          "defect": "missing lang attribute"
+        },
+        {
+          "defect": "link without accessible name"
+        }
+      ]
     },
     "/clean.html": {
       "purpose": "Negative control: nothing planted",
       "expect": []
+    },
+    "/viewport.html": {
+      "purpose": "No viewport meta tag",
+      "expect": [
+        {
+          "defect": "missing viewport meta tag"
+        }
+      ]
+    },
+    "/headings.html": {
+      "purpose": "Two h1 elements and an empty heading",
+      "expect": [
+        {
+          "defect": "multiple h1 headings"
+        }
+      ]
+    },
+    "/og-missing.html": {
+      "purpose": "No Open Graph metadata (has Twitter)",
+      "expect": [
+        {
+          "defect": "missing Open Graph tags"
+        }
+      ]
+    },
+    "/twitter-missing.html": {
+      "purpose": "No Twitter card (has OG)",
+      "expect": [
+        {
+          "defect": "missing twitter card"
+        }
+      ]
+    },
+    "/thin-content.html": {
+      "purpose": "Title promises far more than the body delivers",
+      "expect": [
+        {
+          "defect": "thin content"
+        }
+      ]
+    },
+    "/schema-product.html": {
+      "purpose": "Product schema with no offer",
+      "expect": [
+        {
+          "defect": "product schema missing offer"
+        }
+      ]
+    },
+    "/images-dimensions.html": {
+      "purpose": "Three images with no width/height",
+      "expect": [
+        {
+          "defect": "images without dimensions"
+        }
+      ]
+    },
+    "/links-external.html": {
+      "purpose": "External link without rel, and an empty href",
+      "expect": [
+        {
+          "defect": "external link without noopener",
+          "scope": "crawl",
+          "known_gap": true
+        }
+      ]
     }
   }
 }
