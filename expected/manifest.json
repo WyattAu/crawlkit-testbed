@@ -1,0 +1,50 @@
+{
+  "site": "https://testbed.example",
+  "note": "Ground truth for the planted-defect site. Every entry was written by hand from the comment in the page that plants it, not generated from a crawl. 'at_least' is used where a planted defect legitimately produces more than one finding (for example a missing title also lowers a score).",
+  "pages": {
+    "/missing-title.html": {
+      "purpose": "No title, no meta description, no h1, heading levels skip h2->h4, image with no alt",
+      "expect": [
+        { "defect": "missing title" },
+        { "defect": "missing meta description" },
+        { "defect": "no h1 / heading hierarchy" },
+        { "defect": "image without alt" }
+      ]
+    },
+    "/long-meta.html": {
+      "purpose": "Title and description both far past SERP display width",
+      "expect": [{ "defect": "title too long" }, { "defect": "description too long" }]
+    },
+    "/duplicate-a.html": {
+      "purpose": "Shares title and description with duplicate-b; also has a broken internal link",
+      "expect": [
+        { "defect": "duplicate title across pages", "scope": "crawl" },
+        { "defect": "duplicate description across pages", "scope": "crawl" },
+        { "defect": "broken internal link", "scope": "crawl" }
+      ]
+    },
+    "/duplicate-b.html": {
+      "purpose": "Twin of duplicate-a",
+      "expect": [
+        { "defect": "duplicate title across pages", "scope": "crawl" },
+        { "defect": "duplicate description across pages", "scope": "crawl" }
+      ]
+    },
+    "/canonical-elsewhere.html": {
+      "purpose": "Canonical points at /clean.html",
+      "expect": [{ "defect": "non-self-referencing canonical" }]
+    },
+    "/broken-jsonld.html": {
+      "purpose": "JSON-LD with a trailing comma",
+      "expect": [{ "defect": "unparseable structured data" }]
+    },
+    "/no-lang.html": {
+      "purpose": "No lang attribute, a nameless link, and an external target=_blank",
+      "expect": [{ "defect": "missing lang attribute" }, { "defect": "link without accessible name" }]
+    },
+    "/clean.html": {
+      "purpose": "Negative control: nothing planted",
+      "expect": []
+    }
+  }
+}

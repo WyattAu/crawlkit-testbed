@@ -1,0 +1,55 @@
+{
+  "note": "Maps a defect description in expected/manifest.json to the codes an auditor may emit for it. A list means any one of those codes satisfies the expectation. Codes were derived from a real crawl of the fixtures rather than guessed: for each planted defect, the codes that fire on its page and NOT on the deliberately-clean pages are the candidates. Entries were then pruned to codes that exist in crawlkit's catalog. Two defects currently have no code that fires in the default profile -- see README 'Known crawlkit gaps'.",
+  "missing title": [
+    "TITLEMISS-V2001"
+  ],
+  "missing meta description": [
+    "META001",
+    "META-V3001"
+  ],
+  "no h1 / heading hierarchy": [
+    "HEAD-V2001",
+    "HHIERDEEP001",
+    "HHIERDEEP002"
+  ],
+  "image without alt": [
+    "IMG001",
+    "IMGALT-V2001",
+    "IMGACC001"
+  ],
+  "title too long": [
+    "META003",
+    "TITLE-V4003",
+    "TITLE-PX001",
+    "TITLEDEEP003"
+  ],
+  "description too long": [
+    "MDESC-PX001",
+    "META-V3003"
+  ],
+  "duplicate title across pages": [
+    "DUP-CROSS001"
+  ],
+  "duplicate description across pages": [
+    "DUP-CROSS002"
+  ],
+  "broken internal link": [
+    "HTTP004"
+  ],
+  "non-self-referencing canonical": [
+    "CANSELFRF-V2001"
+  ],
+  "unparseable structured data": [
+    "SCHEMA-ERR001",
+    "SDERR-V2001",
+    "SCHEMABAD001"
+  ],
+  "missing lang attribute": [
+    "A11Y-LANG-MISSING"
+  ],
+  "link without accessible name": [
+    "A11Y-LINK-V2001",
+    "LINK004",
+    "LNKACC001"
+  ]
+}

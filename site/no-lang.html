@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- PLANTED: the html element above has no lang attribute (WCAG 3.1.1, Level A) -->
+  <title>Missing language attribute</title>
+  <meta name="description" content="The html element has no lang attribute.">
+</head>
+<body>
+  <h1>No lang attribute</h1>
+  <p>Screen readers cannot pick a pronunciation dictionary.</p>
+  <!-- PLANTED: link with no accessible name (image with empty alt inside a link) -->
+  <a href="/clean.html"><img src="button.png" alt=""></a>
+  <!-- PLANTED: external link with no rel="noopener" and target=_blank -->
+  <a href="https://example.com" target="_blank">External, opens a new tab</a>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <!-- PLANTED: malformed JSON-LD (trailing comma), so it will not parse -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Broken Widget",
+    "offers": { "@type": "Offer", "price": "9.99", },
+  }
+  </script>
+  <title>Malformed structured data</title>
+  <meta name="description" content="The JSON-LD on this page has a trailing comma.">
+</head>
+<body>
+  <h1>Malformed JSON-LD</h1>
+  <p>The structured data block above will not parse.</p>
+</body>
+</html>

@@ -1,0 +1,39 @@
+name: Score
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  score:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Serve the fixture site
+        run: |
+          python3 -m http.server 8080 --directory site --bind 127.0.0.1 &
+          for i in $(seq 1 20); do
+            curl -sf http://127.0.0.1:8080/index.html >/dev/null && break
+            sleep 0.5
+          done
+
+      - name: Install crawlkit
+        run: cargo install --git https://github.com/WyattAu/crawlkit crawlkit --root "$HOME/.crawlkit"
+
+      - name: Crawl the fixtures
+        run: |
+          "$HOME/.crawlkit/bin/crawlkit" crawl http://127.0.0.1:8080/ \
+            --max-pages 20 --output run --format json
+
+      - name: Score against ground truth
+        run: python3 score/score.py --findings run/crawlkit.db
+
+      - name: Upload the crawl
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: crawl-output
+          path: run/
