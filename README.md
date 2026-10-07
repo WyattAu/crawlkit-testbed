@@ -63,7 +63,7 @@ unexpected codes   125  (informational; see below)
 
 ## Known crawlkit gaps this testbed found
 
-Three real ones. Two fixed; one verified and still open. And one false alarm, recorded because the way it
+Three real ones. All three fixed. And one false alarm, recorded because the way it
 happened is the failure mode this repo exists to catch.
 
 1. **Unparseable JSON-LD was invisible — fixed.** The parser discarded the
@@ -75,11 +75,15 @@ happened is the failure mode this repo exists to catch.
    with no lang produces zero findings. `A11Y-LANG-MISSING` now reports it
    (WCAG 3.1.1, Level A).
 
-3. **No `rel="noopener"` check.** A link with `target="_blank"` and no
-   `rel="noopener"` reverse-tabnabs the visitor, and crawlkit has nothing that
-   reports it. Verified by searching the whole analyzer tree for `noopener` and
-   `noreferrer`: zero hits outside tests. This one is the fixture set's
-   `known_gap`, so it is visible in every scoring run without failing CI.
+3. **No `rel="noopener"` check — fixed.** A link with `target="_blank"` and no
+   `rel="noopener"` reverse-tabnabs the visitor, and crawlkit reported nothing.
+   Verified by searching the whole analyzer tree: zero hits outside tests.
+   `LINK-TABNAB-OPENER` now reports it, with a description that says modern
+   browsers imply noopener so the Warning does not overstate the risk.
+
+   The known-gap mechanism this used to exercise is kept: it lets a gap be
+   visible in every scoring run without failing CI, which is how the next one
+   should be recorded.
 
 And one false alarm, recorded because the way it happened is the failure mode
 this repo exists to catch. The first mapping named

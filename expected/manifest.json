@@ -151,9 +151,7 @@
       "purpose": "External link without rel, and an empty href",
       "expect": [
         {
-          "defect": "external link without noopener",
-          "scope": "crawl",
-          "known_gap": true
+          "defect": "external link without noopener"
         }
       ]
     }
