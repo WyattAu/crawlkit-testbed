@@ -26,7 +26,7 @@ jobs:
       - name: Crawl the fixtures
         run: |
           "$HOME/.crawlkit/bin/crawlkit" crawl http://127.0.0.1:8080/ \
-            --max-pages 20 --output run --format json
+            --max-pages 20 --allow-private --output run --format json
 
       - name: Score against ground truth
         run: python3 score/score.py --findings run/crawlkit.db
