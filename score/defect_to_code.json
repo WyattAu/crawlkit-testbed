@@ -117,5 +117,17 @@
   "event missing start date": [
     "EVENT001",
     "EVENT003"
+  ],
+  "content only exists after javascript runs": [
+    "JSRENDER-TEXT-MISSING"
+  ],
+  "links only exist after javascript runs": [
+    "JSRENDER-LINKS-MISSING"
+  ],
+  "structured data injected by javascript": [
+    "JSRENDER-SCHEMA-MISSING"
+  ],
+  "javascript rewrites the page title": [
+    "JSRENDER-META-REWRITTEN"
   ]
 }

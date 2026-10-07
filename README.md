@@ -49,6 +49,13 @@ number:
    those to the planting page scores an auditor as wrong for an attribution
    choice.
 
+The crawl is run with `--javascript`, so the client-rendered fixture is scored
+through a real browser -- Chrome on the runner, which the crawler locates
+itself. That matters because the raw-versus-rendered analyzer is the newest and
+most intricate one in the set: it compares the served document against the
+post-script DOM, and without a rendered crawl it has nothing to compare and
+would silently pass.
+
 Recall is the gate. Precision is reported but not gated, and cannot be: every
 fixture is a deliberately broken page, so it attracts legitimate findings nobody
 planted, and precision against planted-only expectations falls as the fixture set
@@ -57,8 +64,8 @@ grows. The unexpected list is the review surface, not a verdict.
 ## Current result
 
 ```
-recall    100.0%   (15 of 15 planted defects found)
-unexpected codes   125  (informational; see below)
+recall    100.0%   (36 of 36 planted defects found, scored on a rendered crawl)
+unexpected codes   169  (informational; see below)
 ```
 
 ## Known crawlkit gaps this testbed found

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Client-rendered page</title>
+  <meta name="description" content="Everything on this page is injected by JavaScript after the document loads.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Client-rendered page">
+  <meta property="og:image" content="http://127.0.0.1:8907/og.png">
+  <meta property="og:description" content="Everything on this page is injected by JavaScript after the document loads.">
+  <meta name="twitter:card" content="summary">
+</head>
+<body>
+  <h1>Client-rendered page</h1>
+  <div id="root"></div>
+  <!-- PLANTED: the entire body is built by this script. A crawler that does not
+       execute JavaScript sees an empty div -- no copy, no links, no structured
+       data. The script also rewrites the title, so the SERP snippet differs per
+       crawler. -->
+  <script>
+    document.getElementById('root').innerHTML = `
+      <p>Sourcing standards matter because every supply chain is a chain of
+      promises, and the strength of the chain is decided by the weakest promise
+      in it. This page exists to give a crawler that renders JavaScript
+      something to read while hiding it from every crawler that does not.</p>
+      <p>The second paragraph exists so the delta between the served document and
+      the rendered one is unambiguous rather than a rounding error.</p>
+      <a href="/clean.html">Clean control page</a>
+      <a href="/long-meta.html">Over-long metadata</a>
+      <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Client-rendered"}<\/script>
+    `;
+    document.title = "Client-rendered page | Rendered Title";
+  </script>
+</body>
+</html>

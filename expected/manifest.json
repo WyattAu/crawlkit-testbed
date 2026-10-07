@@ -201,6 +201,23 @@
           "defect": "event missing start date"
         }
       ]
+    },
+    "/client-rendered.html": {
+      "purpose": "Body built by JavaScript; title rewritten",
+      "expect": [
+        {
+          "defect": "content only exists after javascript runs"
+        },
+        {
+          "defect": "links only exist after javascript runs"
+        },
+        {
+          "defect": "structured data injected by javascript"
+        },
+        {
+          "defect": "javascript rewrites the page title"
+        }
+      ]
     }
   }
 }
