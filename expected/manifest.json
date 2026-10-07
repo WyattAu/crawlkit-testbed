@@ -154,6 +154,53 @@
           "defect": "external link without noopener"
         }
       ]
+    },
+    "/schema-local-business.html": {
+      "purpose": "LocalBusiness with no address, telephone or hours",
+      "expect": [
+        {
+          "defect": "local business missing address or telephone"
+        },
+        {
+          "defect": "local business missing opening hours"
+        }
+      ]
+    },
+    "/schema-recipe.html": {
+      "purpose": "Recipe with no ingredients, cook time or nutrition",
+      "expect": [
+        {
+          "defect": "recipe missing ingredients"
+        },
+        {
+          "defect": "recipe missing cook time or nutrition"
+        }
+      ]
+    },
+    "/schema-article.html": {
+      "purpose": "Article with no author, headline or dates",
+      "expect": [
+        {
+          "defect": "article missing author"
+        },
+        {
+          "defect": "article missing dates"
+        },
+        {
+          "defect": "article missing headline"
+        }
+      ]
+    },
+    "/schema-event.html": {
+      "purpose": "Event with no location or start date",
+      "expect": [
+        {
+          "defect": "event missing location"
+        },
+        {
+          "defect": "event missing start date"
+        }
+      ]
     }
   }
 }

@@ -85,5 +85,37 @@
     "THIN002",
     "WC003",
     "WC-V2001"
+  ],
+  "local business missing address or telephone": [
+    "NAP001"
+  ],
+  "local business missing opening hours": [
+    "LBH001"
+  ],
+  "recipe missing ingredients": [
+    "RECIPEING-V5002",
+    "RECIPE002"
+  ],
+  "recipe missing cook time or nutrition": [
+    "RECIPEPT-V5001",
+    "RNUT001",
+    "RECIPE003"
+  ],
+  "article missing author": [
+    "ART-AUTH001"
+  ],
+  "article missing dates": [
+    "ART-DT001",
+    "ARTMOD-V5001"
+  ],
+  "article missing headline": [
+    "ART-HL001"
+  ],
+  "event missing location": [
+    "ELOC001"
+  ],
+  "event missing start date": [
+    "EVENT001",
+    "EVENT003"
   ]
 }

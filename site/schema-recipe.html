@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Recipe missing the parts cooks need</title>
+  <meta name="description" content="A Recipe block with no ingredients, cook time or nutrition.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Recipe missing the parts cooks need">
+  <meta property="og:image" content="http://127.0.0.1:8906/og.png">
+  <meta property="og:description" content="A Recipe block with no ingredients, cook time or nutrition.">
+  <meta name="twitter:card" content="summary">
+</head>
+<body>
+  <h1>Lemma Soup</h1>
+  <p>A recipe whose structured data names the dish and lists no ingredients.</p>
+  <!-- PLANTED: Recipe with no recipeIngredient, no cookTime, no nutrition -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "Lemma Soup",
+    "recipeInstructions": ["Boil water.", "Add things.", "Wait."]
+  }
+  </script>
+</body>
+</html>
