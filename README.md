@@ -56,13 +56,14 @@ unexpected here by construction.
 ## Current result
 
 ```
-recall     96.2%   (25 of 26 planted defects found)
-precision   28.4%  (floor 15%)
+recall    100.0%   (15 of 15 planted defects found)
+precision   19.2%  (floor 15%)
 ```
 
 ## Known crawlkit gaps this testbed found
 
-Three so far. The first two are fixed; the third is open.
+Two real ones, both fixed. And one false alarm, recorded because the way it
+happened is the failure mode this repo exists to catch.
 
 1. **Unparseable JSON-LD was invisible — fixed.** The parser discarded the
    parse error, so a page with broken schema looked identical to one with none.
@@ -73,10 +74,16 @@ Three so far. The first two are fixed; the third is open.
    with no lang produces zero findings. `A11Y-LANG-MISSING` now reports it
    (WCAG 3.1.1, Level A).
 
-3. **A canonical pointing elsewhere is only detected in the deep profile —
-   open.** `CANSELFRF-V2001` exists and does exactly this, but it is not in the
-   default profile, so a default crawl misses the most damaging canonical
-   mistake a site can make. This is the one remaining recall miss.
+3. **"A canonical pointing elsewhere is only detected in the deep profile" —
+   false, and published here before it was checked.** The first mapping named
+   `CANSELFRF-V2001`, a code belonging to an analyzer that is deliberately not
+   registered. Two registered analyzers already report this defect, as
+   `CAN-SR001` and `CANSELFRF-V6089`. The gap was in the mapping, not in
+   crawlkit.
+
+   The lesson belongs to the scorer: expectations are defects, not codes.
+   Mapping one defect to several codes and counting each unmapped code as a
+   miss reports a miss for every synonym of a defect that was in fact found.
 
 ## Registering a live site
 
