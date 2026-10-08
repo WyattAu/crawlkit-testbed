@@ -218,6 +218,36 @@
           "defect": "javascript rewrites the page title"
         }
       ]
+    },
+    "/guides/cookbook/deep-page.html": {
+      "purpose": "Three levels deep, breadcrumb trail as plain text",
+      "expect": [
+        {
+          "defect": "deep page missing breadcrumb structured data"
+        }
+      ]
+    },
+    "/hreflang.html": {
+      "purpose": "Alternates with no x-default, no reciprocals, no self-reference",
+      "expect": [
+        {
+          "defect": "hreflang missing x-default"
+        },
+        {
+          "defect": "hreflang alternates missing reciprocal links"
+        },
+        {
+          "defect": "hreflang missing self-reference"
+        }
+      ]
+    },
+    "/pagination.html": {
+      "purpose": "Archive page whose only internal link is to itself",
+      "expect": [
+        {
+          "defect": "archive page links only to itself"
+        }
+      ]
     }
   }
 }

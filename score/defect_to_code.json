@@ -129,5 +129,26 @@
   ],
   "javascript rewrites the page title": [
     "JSRENDER-META-REWRITTEN"
+  ],
+  "deep page missing breadcrumb structured data": [
+    "BREAD003"
+  ],
+  "hreflang missing x-default": [
+    "HREF-V3001"
+  ],
+  "hreflang alternates missing reciprocal links": [
+    "HREFRECIP-V2001",
+    "HREFRECIP-V5001"
+  ],
+  "hreflang missing self-reference": [
+    "HREFSELF-V2001"
+  ],
+  "archive page links only to itself": [
+    "INTLINKQ001",
+    "INTLINKQ-V2001"
+  ],
+  "howto schema missing steps": [
+    "HOWTO002",
+    "HOWTOSTEP001"
   ]
 }
