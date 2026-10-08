@@ -50,6 +50,12 @@ jobs:
               r = subprocess.run(cmd, capture_output=True, text=True)
               status = "ok" if r.returncode == 0 else f"exit {r.returncode}"
               print(f"{t['name']}: {status}", flush=True)
+              # Whether rendering happened is otherwise invisible: the census
+              # only counts codes, and a silently missing Chrome reads the same
+              # as a page that legitimately has no client-rendered content.
+              for line in (r.stdout + r.stderr).splitlines():
+                  if "Rendering via" in line or "rendering unavailable" in line:
+                      print(f"  {t['name']}: {line.split('Z ', 1)[-1]}", flush=True)
               if r.returncode != 0:
                   failed.append(t["name"])
           if failed:
