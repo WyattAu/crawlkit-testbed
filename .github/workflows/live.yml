@@ -1,0 +1,82 @@
+name: Live targets
+
+# Crawls the registered live sites and diffs the findings census against the
+# last committed baseline. This is the regression signal for real sites: a
+# crawlkit change that moves findings on wyattsnotes shows up here as a number
+# moving, not as an impression.
+#
+# Deltas are reported, never failed: live sites churn for reasons that have
+# nothing to do with the crawler. The only failure is a site that crawls to
+# zero pages.
+
+on:
+  schedule:
+    - cron: "0 6 * * 1" # Mondays, 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: live-targets
+  cancel-in-progress: false
+
+jobs:
+  census:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install crawlkit
+        run: cargo install --git https://github.com/WyattAu/crawlkit crawlkit --root "$HOME/.crawlkit"
+
+      - name: Crawl each registered target
+        run: |
+          mkdir -p run
+          python3 - <<'PY'
+          import json, os, subprocess, sys
+          targets = json.load(open("targets/index.json"))["targets"]
+          bin = os.path.expanduser("~/.crawlkit/bin/crawlkit")
+          failed = []
+          for t in targets:
+              out = os.path.join("run", t["name"])
+              r = subprocess.run([bin, "crawl", t["url"], "--max-pages", str(t["pages"]),
+                                  "--user-agent", "crawlkit-testbed/6.0",
+                                  "--output", out, "--format", "json"],
+                                 capture_output=True, text=True)
+              status = "ok" if r.returncode == 0 else f"exit {r.returncode}"
+              print(f"{t['name']}: {status}", flush=True)
+              if r.returncode != 0:
+                  failed.append(t["name"])
+          if failed:
+              print("crawls failed:", ", ".join(failed), file=sys.stderr)
+          PY
+
+      - name: Census and diff against the baseline
+        id: score
+        run: |
+          python3 score/live.py --run run --baseline baselines/census.json \
+            --out census.json --summary summary.md
+          echo "census=census.json" >> "$GITHUB_OUTPUT"
+
+      - name: Upload the crawl
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: live-census
+          path: |
+            run/
+            census.json
+            summary.md
+
+      - name: Commit the new baseline
+        run: |
+          git config user.name "testbed-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add baselines/census.json
+          if git diff --cached --quiet; then
+            echo "baseline unchanged"
+            exit 0
+          fi
+          git commit -q -m "census: refresh the live-target baseline ([skip ci])"
+          git push
