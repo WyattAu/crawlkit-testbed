@@ -150,5 +150,20 @@
   "howto schema missing steps": [
     "HOWTO002",
     "HOWTOSTEP001"
+  ],
+  "faq question missing accepted answer": [
+    "FAQ003"
+  ],
+  "faq page has fewer than two questions": [
+    "FAQ002"
+  ],
+  "job posting missing datePosted": [
+    "JOB002"
+  ],
+  "job posting missing validThrough": [
+    "JOB003"
+  ],
+  "course missing provider": [
+    "COURSE002"
   ]
 }

@@ -248,6 +248,36 @@
           "defect": "archive page links only to itself"
         }
       ]
+    },
+    "/schema-faq.html": {
+      "purpose": "FAQPage: one question, no accepted answer",
+      "expect": [
+        {
+          "defect": "faq question missing accepted answer"
+        },
+        {
+          "defect": "faq page has fewer than two questions"
+        }
+      ]
+    },
+    "/schema-jobposting.html": {
+      "purpose": "JobPosting with no datePosted and no validThrough",
+      "expect": [
+        {
+          "defect": "job posting missing datePosted"
+        },
+        {
+          "defect": "job posting missing validThrough"
+        }
+      ]
+    },
+    "/schema-course.html": {
+      "purpose": "Course with no provider",
+      "expect": [
+        {
+          "defect": "course missing provider"
+        }
+      ]
     }
   }
 }
