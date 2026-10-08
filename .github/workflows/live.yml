@@ -40,10 +40,14 @@ jobs:
           failed = []
           for t in targets:
               out = os.path.join("run", t["name"])
-              r = subprocess.run([bin, "crawl", t["url"], "--max-pages", str(t["pages"]),
-                                  "--user-agent", "crawlkit-testbed/6.0",
-                                  "--output", out, "--format", "json"],
-                                 capture_output=True, text=True)
+              cmd = [bin, "crawl", t["url"], "--max-pages", str(t["pages"]),
+                     "--user-agent", "crawlkit-testbed/6.0",
+                     "--output", out, "--format", "json"]
+              if t.get("render"):
+                  # Rendering needs a browser, and the crawler locates Chrome
+                  # itself. ubuntu-latest runners ship Google Chrome.
+                  cmd.append("--javascript")
+              r = subprocess.run(cmd, capture_output=True, text=True)
               status = "ok" if r.returncode == 0 else f"exit {r.returncode}"
               print(f"{t['name']}: {status}", flush=True)
               if r.returncode != 0:

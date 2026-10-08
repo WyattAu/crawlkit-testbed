@@ -1,15 +1,36 @@
 {
-  "note": "Live sites crawled on a schedule so a crawlkit change that moves findings on a real site is measured rather than noticed. Counts are compared against the last committed baseline; deltas are reported, and only a site that crawls to zero pages fails the run. `pages` caps the crawl: these are trend signals, not audits, and a stable cap keeps the counts comparable.",
+  "note": "Live sites crawled on a schedule so a crawlkit change that moves findings on a real site is measured rather than noticed. Counts are compared against the last committed baseline; deltas are reported, and only a site that crawls to zero pages fails the run. `pages` caps the crawl: these are trend signals, not audits. `render: true` means the crawl also runs with --javascript, which is what makes the raw-versus-rendered codes visible; wyattsnotes is the only registered site that renders content client-side.",
   "targets": [
-    { "name": "wyattsnotes", "url": "https://wyattsnotes.wyattau.com/", "pages": 30,
-      "why": "Astro/Starlight behind Cloudflare. Rich canonical and metadata behaviour, and the site where the homepage-canonical bug was found." },
-    { "name": "crawlkit-docs", "url": "https://wyattau.github.io/crawlkit/", "pages": 10,
-      "why": "GitHub Pages, so header findings are unactionable by construction." },
-    { "name": "evergreen", "url": "https://wyattau.github.io/EvergreenImageRegistry/", "pages": 10,
-      "why": "GitHub Pages, image-heavy." },
-    { "name": "civitforge", "url": "https://wyattau.github.io/CivitForge/", "pages": 5,
-      "why": "GitHub Pages, single page." },
-    { "name": "clawdius", "url": "https://wyattau.github.io/clawdius/", "pages": 5,
-      "why": "GitHub Pages, single page." }
+    {
+      "name": "wyattsnotes",
+      "url": "https://wyattsnotes.wyattau.com/",
+      "pages": 30,
+      "why": "Astro/Starlight behind Cloudflare. Rich canonical and metadata behaviour, and the site where the homepage-canonical bug was found.",
+      "render": true
+    },
+    {
+      "name": "crawlkit-docs",
+      "url": "https://wyattau.github.io/crawlkit/",
+      "pages": 10,
+      "why": "GitHub Pages, so header findings are unactionable by construction."
+    },
+    {
+      "name": "evergreen",
+      "url": "https://wyattau.github.io/EvergreenImageRegistry/",
+      "pages": 10,
+      "why": "GitHub Pages, image-heavy."
+    },
+    {
+      "name": "civitforge",
+      "url": "https://wyattau.github.io/CivitForge/",
+      "pages": 5,
+      "why": "GitHub Pages, single page."
+    },
+    {
+      "name": "clawdius",
+      "url": "https://wyattau.github.io/clawdius/",
+      "pages": 5,
+      "why": "GitHub Pages, single page."
+    }
   ]
 }
