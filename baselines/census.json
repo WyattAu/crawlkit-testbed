@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-08T00:08:10+00:00",
+  "generated_at": "2026-10-08T22:46:55+00:00",
   "sites": {
     "civitforge": {
       "codes": {
@@ -354,10 +354,8 @@
     },
     "wyattsnotes": {
       "codes": {
-        "A11Y-LANG-MISSING": 23,
         "A11Y010": 30,
         "A11Y015": 4,
-        "A11Y016": 23,
         "AI-AB003": 3,
         "ANCHGEN001": 30,
         "ARIALAND-ROLE-BANNER": 30,
@@ -370,6 +368,7 @@
         "CANNIB002": 1,
         "COEP-V2001": 30,
         "COISO-V2002": 30,
+        "COLRCT-V2003": 2,
         "CORP001": 30,
         "CORS002": 30,
         "CQ004": 21,
@@ -388,6 +387,7 @@
         "FONT-V2001": 30,
         "FONT002": 30,
         "FRESHSC001": 30,
+        "FSIZE002": 2,
         "GRAPH001": 13,
         "GRAPH002": 4,
         "HREFMISS-V2001": 30,
@@ -396,12 +396,11 @@
         "HSTSPR-V2002": 30,
         "IMGDIM001": 30,
         "INTOPIC001": 25,
-        "ISEO004": 7,
+        "ISEO004": 30,
         "KW-DENS001": 1,
         "KW003": 2,
         "KWPRO002": 29,
         "LANDCOMP-V2001": 30,
-        "LANG-V2001": 23,
         "LINK-V2001": 30,
         "LINK005": 120,
         "LINKDUP-V6115": 3,
@@ -418,11 +417,11 @@
         "ORPHAN001": 13,
         "PERMPDEEP002": 30,
         "PRECON-V5001": 30,
-        "PRELOAD002": 7,
+        "PRELOAD002": 9,
         "SCRIPT002": 29,
         "SITEMAP006": 30,
         "SITEMAPMISS-V2001": 30,
-        "SRI-V5001": 30,
+        "SRI-V5001": 28,
         "TBLCAP-V2001": 4,
         "TBLSCOP-V2001": 4,
         "TITLE-V4003": 30,
