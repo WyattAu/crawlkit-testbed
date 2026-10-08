@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Duplicate ids</title>
+  <meta name="description" content="The same id declared twenty times.">
+  <meta property="og:title" content="Duplicate ids">
+  <meta property="og:image" content="http://127.0.0.1:8907/og.png">
+  <meta name="twitter:card" content="summary">
+</head>
+<body>
+  <h1>Duplicate ids</h1>
+  <!-- PLANTED (robustness): the same id twenty times, which invalidates getElementById semantics -->
+  <div id="dup">block 0</div>
+<div id="dup">block 1</div>
+<div id="dup">block 2</div>
+<div id="dup">block 3</div>
+<div id="dup">block 4</div>
+<div id="dup">block 5</div>
+<div id="dup">block 6</div>
+<div id="dup">block 7</div>
+<div id="dup">block 8</div>
+<div id="dup">block 9</div>
+<div id="dup">block 10</div>
+<div id="dup">block 11</div>
+<div id="dup">block 12</div>
+<div id="dup">block 13</div>
+<div id="dup">block 14</div>
+<div id="dup">block 15</div>
+<div id="dup">block 16</div>
+<div id="dup">block 17</div>
+<div id="dup">block 18</div>
+<div id="dup">block 19</div>
+  <p>Twenty elements share one id.</p>
+</body>
+</html>

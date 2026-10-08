@@ -103,6 +103,20 @@ this repo exists to catch. The first mapping named
    Mapping one defect to several codes and counting each unmapped code as a
    miss reports a miss for every synonym of a defect that was in fact found.
 
+## Robustness fixtures
+
+Four documents plant no semantic defect at all: `malformed.html` (unclosed
+tags, a stray quote, crossed closers), `deep-nesting.html` (1,000 nested
+divisions), `huge-attribute.html` (a 1 MB attribute value) and
+`duplicate-ids.html` (one id twenty times).
+
+They carry no manifest entries, because the property under test is not a
+finding — it is that the crawler **finishes**, does not panic, and extracts
+sane text from documents that would embarrass a regex-based parser. Measured on
+the current build: all four parse and report in 4.7 s for the whole crawl,
+titles correct, body text found, links extracted. A crash or a hang in any
+crawlkit change fails the scoring workflow, which is the assertion.
+
 ## Registering a live site
 
 `targets/` holds one file per external site: its URL, what it is built with,

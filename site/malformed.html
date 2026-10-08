@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Malformed markup</title>
+  <meta name="description" content="Unclosed tags, a stray quote, and a tag closed by nothing.">
+  <meta property="og:title" content="Malformed markup">
+  <meta property="og:image" content="http://127.0.0.1:8907/og.png">
+  <meta name="twitter:card" content="summary">
+</head>
+<body>
+  <h1>Malformed markup</h1>
+  <!-- PLANTED (robustness): unclosed elements, a stray quote, mismatched closers -->
+  <p>Unclosed paragraph
+  <div>Unclosed division
+  <span>Unclosed span
+  <a href="/clean.html">anchor with "a stray quote inside</a>
+  <b><i>crossed closers</b></i>
+  <table><tr><td>table without tbody or closing cells
+  <p>text after an implicitly-closed table
+  <p>This page should still parse: title, description, headings and links all readable.
+</body>
+</html>
