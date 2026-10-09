@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Course without prerequisites</title>
+  <meta name="description" content="A Course block with a provider but no prerequisite or hasCoursePrerequisite.">
+</head>
+<body>
+  <h1>Graph Theory II</h1>
+  <!-- PLANTED: Course has a provider (so COURSE002 must stay quiet) but no
+       prerequisite / hasCoursePrerequisite — COURSEPRE001 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": "Graph Theory II",
+    "description": "Builds on Graph Theory I.",
+    "provider": {
+      "@type": "Organization",
+      "name": "Example University"
+    }
+  }
+  </script>
+</body>
+</html>

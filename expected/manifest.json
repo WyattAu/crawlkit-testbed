@@ -278,6 +278,25 @@
           "defect": "course missing provider"
         }
       ]
+    },
+    "/schema-course-prereq.html": {
+      "purpose": "Course with a provider but no prerequisite",
+      "expect": [
+        {
+          "defect": "course missing prerequisite"
+        }
+      ]
+    },
+    "/schema-product-offers.html": {
+      "purpose": "Product offers present but currency data missing or invalid",
+      "expect": [
+        {
+          "defect": "product offer missing priceCurrency"
+        },
+        {
+          "defect": "product offer invalid priceCurrency"
+        }
+      ]
     }
   }
 }

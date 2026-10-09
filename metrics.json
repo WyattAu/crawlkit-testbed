@@ -1,0 +1,20 @@
+{
+  "pages_crawled": 1,
+  "pages_failed": 0,
+  "findings_generated": 82,
+  "bytes_fetched": 1065,
+  "fetch_time_us": 1352,
+  "analysis_time_us": 5833,
+  "storage_time_us": 0,
+  "active_connections": 0,
+  "circuit_breaker_trips": 0,
+  "resource_limit_hits": 0,
+  "pages_skipped_circuit_breaker": 0,
+  "pages_skipped_robots": 0,
+  "pages_skipped_duplicate": 0,
+  "pages_unchanged": 0,
+  "renders_started": 0,
+  "renders_completed": 0,
+  "renders_quota_exhausted": 0,
+  "renders_budget_exhausted": 0
+}

@@ -267,5 +267,14 @@
   "course missing provider": [
     "COURSE002",
     "CPROV-V2001"
+  ],
+  "course missing prerequisite": [
+    "COURSEPRE001"
+  ],
+  "product offer missing priceCurrency": [
+    "PROFFER002"
+  ],
+  "product offer invalid priceCurrency": [
+    "PROFFER003"
   ]
 }

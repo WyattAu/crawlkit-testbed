@@ -1,0 +1,29 @@
+[
+  {
+    "category": "content",
+    "code": "FRESH-C002",
+    "description": "1/1 pages (100%) have fewer than 200 words.",
+    "recommendation": "Expand thin pages with substantive, unique content.",
+    "severity": "warning",
+    "title": "Low average content depth",
+    "url": "http://127.0.0.1:8971/schema-product.html"
+  },
+  {
+    "category": "security",
+    "code": "SEC-C001",
+    "description": "1/1 pages (100%) missing CSP header.",
+    "recommendation": "Add Content-Security-Policy headers.",
+    "severity": "warning",
+    "title": "Low CSP coverage",
+    "url": "http://127.0.0.1:8971/schema-product.html"
+  },
+  {
+    "category": "security",
+    "code": "SEC-C002",
+    "description": "1/1 pages (100%) missing HSTS header.",
+    "recommendation": "Add Strict-Transport-Security headers.",
+    "severity": "warning",
+    "title": "Low HSTS coverage",
+    "url": "http://127.0.0.1:8971/schema-product.html"
+  }
+]

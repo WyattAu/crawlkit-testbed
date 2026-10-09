@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Product offers with bad currency data</title>
+  <meta name="description" content="Products whose offers are present but carry missing or invalid priceCurrency values.">
+</head>
+<body>
+  <h1>Hardware Store</h1>
+  <!-- PLANTED: two Products, each with offers present (so PROFFER001 stays
+       quiet) but bad currency data:
+       - one Offer with no priceCurrency at all — PROFFER002
+       - one Offer whose priceCurrency "us" is not a 3-letter uppercase
+         ISO 4217 code — PROFFER003 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Claw Hammer",
+    "offers": {
+      "@type": "Offer",
+      "price": "19.99"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Screwdriver Set",
+    "offers": [
+      {
+        "@type": "Offer",
+        "price": "24.00",
+        "priceCurrency": "us"
+      },
+      {
+        "@type": "Offer",
+        "price": "31.50",
+        "priceCurrency": "USD"
+      }
+    ]
+  }
+  </script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "crawl_id": "877fa3bd-1f9e-4000-8e88-88afbab81114",
+  "max_pages": 1,
+  "measurements_excluded_from_totals": true,
+  "pages_crawled": 1,
+  "pages_stored": 1,
+  "seed": null,
+  "status": "completed",
+  "target_url": "http://127.0.0.1:8971/schema-product.html",
+  "total_issues": 63,
+  "total_measurements": 22
+}
