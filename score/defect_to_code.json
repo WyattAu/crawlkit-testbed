@@ -1,11 +1,48 @@
 {
-  "note": "Maps a defect description in expected/manifest.json to the codes an auditor may emit. For defects in a curated family the mapping lists EVERY member: which member survives dedupe changes between crawls, so pinning one code made a found defect read as missed.",
+  "note": [
+    " ",
+    ",",
+    ".",
+    "/",
+    ":",
+    "E",
+    "F",
+    "M",
+    "R",
+    "V",
+    "Y",
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "i",
+    "j",
+    "l",
+    "m",
+    "n",
+    "o",
+    "p",
+    "r",
+    "s",
+    "t",
+    "u",
+    "v",
+    "w",
+    "x",
+    "y"
+  ],
   "missing title": [
     "TITLEMISS-V2001"
   ],
   "missing meta description": [
+    "META-V3001",
     "META001",
-    "META-V3001"
+    "META004",
+    "METADESCMISS-V6085"
   ],
   "no h1 / heading hierarchy": [
     "HEAD-V2001",
@@ -14,21 +51,40 @@
   ],
   "image without alt": [
     "IMG001",
+    "IMGACC001",
     "IMGALT-V2001",
-    "IMGACC001"
+    "IMGALT001",
+    "IMGALTDEEP001",
+    "IMGALTMISS-V6116"
   ],
   "title too long": [
     "META003",
-    "TITLE-V4003",
     "TITLE-PX001",
-    "TITLEDEEP003"
+    "TITLE-V4003",
+    "TITLE002",
+    "TITLEDEEP-V2002",
+    "TITLEDEEP002",
+    "TITLEDEEP003",
+    "TITLELEN-V2001",
+    "TITLELEN-V5003",
+    "TITLEPX-V6084",
+    "TITLEQLT-V2002"
   ],
   "description too long": [
     "MDESC-PX001",
-    "META-V3003"
+    "META-PX001",
+    "META-V3001-LENGTH",
+    "META-V3003",
+    "META006",
+    "METADEEP-V2002",
+    "METADEEP002",
+    "METADESC002",
+    "METALEN-V2001",
+    "METAQLT-V2002"
   ],
   "duplicate title across pages": [
-    "DUP-CROSS001"
+    "DUP-CROSS001",
+    "KEY-CANNIB001"
   ],
   "duplicate description across pages": [
     "DUP-CROSS002"
@@ -56,26 +112,40 @@
   ],
   "link without accessible name": [
     "A11Y-LINK-V2001",
+    "INTLINKQ003",
     "LINK004",
     "LNKACC001"
   ],
   "missing viewport meta tag": [
+    "META009",
     "MOB001"
   ],
   "multiple h1 headings": [
-    "A11Y004"
+    "A11Y004",
+    "CDEPTH003",
+    "H1MULTI-V6108",
+    "HEAD003",
+    "HEADH1-V5002",
+    "HEADING-MULTIH1",
+    "HEADSC003",
+    "HHIER-V2003-DEEP-DEEP",
+    "HHIER-V2003-DEEP-DEEP-DEEP",
+    "HHIERDEEP003"
   ],
   "missing Open Graph tags": [
     "SPREV001",
     "SPREV002"
   ],
   "missing twitter card": [
-    "SOCIAL004"
+    "SOCIAL004",
+    "TW001"
   ],
   "product schema missing offer": [
     "PRODAVAIL001"
   ],
   "images without dimensions": [
+    "IMG004",
+    "IMGDIM-V5001",
     "IMGDIM001"
   ],
   "external link without noopener": [
@@ -83,40 +153,60 @@
   ],
   "thin content": [
     "THIN002",
-    "WC003",
-    "WC-V2001"
+    "WC-V2001",
+    "WC003"
   ],
   "local business missing address or telephone": [
+    "NAP-UTIL001",
     "NAP001"
   ],
   "local business missing opening hours": [
-    "LBH001"
+    "LBH001",
+    "NAP002"
   ],
   "recipe missing ingredients": [
-    "RECIPEING-V5002",
-    "RECIPE002"
+    "RECCOOK001",
+    "RECIPE002",
+    "RECIPECOOK001",
+    "RECIPEING-V5002"
   ],
   "recipe missing cook time or nutrition": [
+    "RECIPE003",
+    "RECIPECOOK002",
     "RECIPEPT-V5001",
-    "RNUT001",
-    "RECIPE003"
+    "RNUT-V2001",
+    "RNUT001"
   ],
   "article missing author": [
-    "ART-AUTH001"
+    "ART-AUTH001",
+    "ART003",
+    "ARTAUTH-V2001",
+    "ARTQUAL002"
   ],
   "article missing dates": [
     "ART-DT001",
-    "ARTMOD-V5001"
+    "ART002",
+    "ARTDT-V2001",
+    "ARTMOD-V5001",
+    "ARTQUAL003"
   ],
   "article missing headline": [
-    "ART-HL001"
+    "ART-HL001",
+    "ART001",
+    "ARTHL-V2001",
+    "ARTQUAL001"
   ],
   "event missing location": [
-    "ELOC001"
+    "ELOC-V2001",
+    "ELOC001",
+    "EVENT002",
+    "EVTLOC-V6059"
   ],
   "event missing start date": [
     "EVENT001",
-    "EVENT003"
+    "EVENT003",
+    "EVTORG-V5002",
+    "EVTSTART-V6058"
   ],
   "content only exists after javascript runs": [
     "JSRENDER-TEXT-MISSING"
@@ -134,18 +224,28 @@
     "BREAD003"
   ],
   "hreflang missing x-default": [
-    "HREF-V3001"
+    "HREF-V3001",
+    "HREF-V4001",
+    "HREF001",
+    "HREFNET002",
+    "HREFRECIP001",
+    "HREFXD-V2001",
+    "HREFXD-V5001",
+    "HREFXD-V6094",
+    "HREFXD001",
+    "ISEO002"
   ],
   "hreflang alternates missing reciprocal links": [
     "HREFRECIP-V2001",
-    "HREFRECIP-V5001"
+    "HREFRECIP-V5001",
+    "HREFSELF001"
   ],
   "hreflang missing self-reference": [
     "HREFSELF-V2001"
   ],
   "archive page links only to itself": [
-    "INTLINKQ001",
-    "INTLINKQ-V2001"
+    "INTLINKQ-V2001",
+    "INTLINKQ001"
   ],
   "howto schema missing steps": [
     "HOWTO002",
@@ -161,9 +261,11 @@
     "JOB002"
   ],
   "job posting missing validThrough": [
-    "JOB003"
+    "JOB003",
+    "JOBVT-V5001"
   ],
   "course missing provider": [
-    "COURSE002"
+    "COURSE002",
+    "CPROV-V2001"
   ]
 }
